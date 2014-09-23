@@ -1,0 +1,16 @@
+<form method="post" name="form" action="/post" class="post_form">
+	<textarea type="text" name="post" cols="60" rows="5"></textarea>
+	<input type="submit" name="submit" value="发表" id="post_sub">
+</form>
+<% posts.forEach(function(post,index){ %>
+<h2><a href="/u/<%=post.user%>"><%=post.user%>说</a></h2>
+	<%if(post.user!=post.reply){%>
+		回复@<a href="/u/<%=post.reply%>"><%=post.reply%></a> 
+	<%}%>
+<%=post.post%>
+<p class="time"><%=post.time%>
+	<%if(name==post.user){%>
+	<span><a href="/delete/<%=post.time%>" class="delete">删除</a></span>
+	<%}%>
+</p>
+<% }) %>

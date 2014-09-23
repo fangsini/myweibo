@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <title>blog</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <style>
+    a{text-decoration: none;}
+    a:hover{text-decoration: underline;}
+    nav span{padding-left: 5px;}
+    .main{font-size: 22px;}
+    .post_form{margin-top: 10px;}
+    .mypost{padding-left: 10px;}
+    .time, .delete{color: #cf9e8b;}
+    .delete{padding-left: 15px;}
+    .reply_form{display: none;}
+  </style>
+  <body>
+      <span class="main"><a href="/">主页</a></span>
+      <span><a href="/users/post">上传</a></span>
+      <% if(user){ %>
+      欢迎<%=user.name%>!
+        <span class="mypost"><a href="/mypost">我的微博</a></span>
+        <span><a href="/logout">退出</a></span>
+      <!-- <span><a href="/post">发表微博</a></span> -->
+      <% } %>
+      
+    <%- body %>
+  </body>
+</html>

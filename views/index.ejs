@@ -1,0 +1,41 @@
+<style>
+	.reg, .login{padding-left: 10px;}
+</style>
+<% if(!user){ %>
+      <span class="reg"><a href="/reg">注册</a></span>
+      <span class="login"><a href="/login">登录</a></span>
+<%}%>
+<form method="post" name="form" action="/post" class="post_form">
+	<textarea type="text" name="post" cols="60" rows="5"></textarea>
+	<input type="submit" name="submit" value="发表" id="post_sub">
+</form>
+<% if(posts!=null){%>
+	<p>所有微博</p>
+	<% posts.forEach(function(post,index){ %>
+	<h2><a href="/u/<%=post.user%>"><%=post.user%>说</a></h2>
+
+		<%if(post.user!=post.reply){%>
+			回复@<a href="/u/<%=post.reply%>"><%=post.reply%></a> 
+		<%}%>
+		<%=post.post%>
+		<!--原作者的微博-->
+
+	<p class="time"><%=post.time%>
+		<%if(name==post.user){%>
+		<span><a href="/delete/<%=post.time%>" class="delete">删除</a></span>
+		<%}else{%>
+		<span><a href="javascript:;" onclick="show_form('<%=post.time%>')">回复</a></span>
+		<form id="<%=post.time%>" class="reply_form" method="post" action="/reply/<%=post.user%>">
+			<textarea type="text" name="reply_post"cols="80" rows="5"></textarea>
+			<input type="submit" name="submit" value="回复">
+		</form>
+		<%}%>
+	</p>
+	<% }) %>
+<%} %>
+<script>
+	function show_form(id){
+		var thisId = document.getElementById(id);
+		thisId.style.display = "block";
+	}
+</script>

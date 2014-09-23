@@ -1,0 +1,17 @@
+<style>
+	.login{padding-left: 10px;text-decoration: underline;}
+	label{width: 70px;text-align: right;display: inline-block;}
+	.error{color:#00B7FF;display: inline-block;font-size: 18px;padding-left: 5px;}
+</style>
+<h2>请完善用户信息
+	<%if(locals.error!=null){%>
+	<span class="error"><%=locals.error%></span>
+	<%}%>
+</h2>
+<form action="" method="post" name="form" id="form">
+  <p><label for="username">用户名：</label><input type="text" name="username"></p>
+  <p><label for="password">密码：</label><input type="text" name="password"></p>
+  <p><label for="comfirm_psw">确认密码：</label><input type="text" name="comfirm_psw"></p>
+  <input type="submit" name="submit" value="注册">
+  <span class="login"><a href="/login">登录</a></span>
+</form>
